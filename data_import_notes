@@ -1,0 +1,20 @@
+# Data Import Notes (Supabase → PostgreSQL)
+
+## Source
+Imported a provided Excel/CSV dataset into Supabase tables: publishers, titles, stores, sales (and authors if included).
+
+## Issues encountered
+- CSV header mismatches with existing table columns
+- Formatting inconsistencies (types, blanks/nulls)
+- Foreign key constraints requiring parent records to exist before child inserts
+
+## Fixes applied
+- Aligned CSV headers to match table column names exactly
+- Cleaned/standardized key fields used for joins and foreign keys
+- Imported parent tables first (publishers, stores) before dependent tables (titles, sales)
+- Re-ran imports after resolving constraint errors
+
+## Validation
+- Verified row counts per table after import
+- Used join queries and control checks to detect orphaned records
+- Flagged null/invalid values that could impact reporting outputs
